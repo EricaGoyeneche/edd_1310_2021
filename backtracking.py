@@ -35,7 +35,7 @@ class LaberintoADT:
             for columna range(self.__laberinto.get_num_cols()):
                tope = self.__camino.peek() #Va a regresar una tupla
                if self.__laberinto.get_item(renglon, columna) == 'E'
-                  self.__camino.push(tuple(renglon,columna))
+                  self.__camino.push((renglon,columna))
                   encontrado = True
         return encontrado
 
@@ -45,5 +45,45 @@ class LaberintoADT:
     def get_previa(self):
         return self.__previa
 
-   def resolver_laberinto(self):
-#COMENZAR A RESOLVER
+    def imprimir_camino(self):
+        self.__camino.to_string()
+
+    def imprimir_pila(self):
+        self.__camino.to_string()
+
+    def get_pos_actual(self):
+        return self.__camino.peek()
+
+    def resolver_laberinto(self):
+        actual = self.__camino.peek()  #5,2
+
+        #Regla 1 BUSCAR A LA IZQUIERDA      pos actual es 5,2
+        #Se le resta uno porque es la de la izquierda y preguntamos si es 0 o sea si hay pasillo
+        if actual[1]-1 != -1\
+         and self.__laberinto.get_item(actual[0],actual[1]-1) =='0' \
+         and self.get_previa() != (actual[0],actual[1]-1) \  #Regla 6 va implicita en todas
+         and self.__laberinto.get_item(actual[0],actual[1]-1) != 'X':
+             self.set_previa(actual)
+             self.__camino.push(actual[0],actual[1]-1)
+
+        #REGLA 2 BUSCAR ARRIBA
+        elif actual[0]-1 != -1\
+         and self.__laberinto.get_item(actual[0]-1,actual[1]) =='0' \
+         and self.get_previa() != (actual[0]-1,actual[1]) \  #Regla 6 va implicita en todas
+         and self.__laberinto.get_item(actual[0]-1,actual[1]) != 'X':
+             self.set_previa(actual)
+             self.__camino.push((actual[0]-1,actual[1]))
+
+        #REGLA 3 BUSCAR DERECHA
+        elif 1==0:
+          pass
+
+
+
+        #REGLA 4 BUSCAR ABAJO
+        elif 1==0:
+            pass
+        else:
+            self.__laberinto.set_item(actual[0],actual[1], 'X')
+            self.__previa = actual 
+            self.__camino.pop()  #Con esto hacemos backtracking
