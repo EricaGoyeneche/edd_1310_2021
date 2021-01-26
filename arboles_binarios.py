@@ -85,9 +85,45 @@ class BinarySearchTree:  #Arbol binario de busqueda
            return self.__reach(nodo.right, value)
 
     def remove(self, value):
-         #caso 1
-         if encontrado.left == None and encontrado.right == None:  #Significa que es un nodo hoja
-            encontrado = None
-         #caso 2
-         elif (encontrado.left != None  and encontrado.right == None) or (encontrado.left == None  and encontrado.right != None): #Del lado derecho hay algo y del izquierodo no
-              print("A eliminar:", encontado.data)
+        if self.__root == None:
+            print("Nada que eliminar")
+        else:
+            self.__remove (None, None, self.__root , value):
+    def __remove (self, padre_hi, padre_hd, actual, value):
+        if actual == None:
+            print("caso base")
+            return None
+        elif actual.data == value: #Caso base
+            return ("Econtrado:", actual.data)
+        #Caso 1 : hoja
+        if actual.left == None and actual.right == None:
+            if padre_hi != None:
+
+            else:
+                padre_hd.right = None
+
+
+        #caso 2 : conm un hijo
+       if (actual.left != None and actual.right == None) or (actual.left == None and actual.right)
+          print("Es un nodo con hijo", actual.data )
+          if actual.left != None:
+              actual.data = actual.left.data
+              actual.left = None
+        else:
+            actual.data = actual.right.data
+            actual.right = None
+
+
+
+        #caso 3 : con dos hijos
+
+
+
+
+        #return actual
+      elif valor < actual.data:
+          print("Buscar a la izquierda")
+          self.__remove(actal, None, actual.left, value)
+      else:
+          print("Buscar a la derecha")
+          self.__remove(actal, None, actual.right, value)
